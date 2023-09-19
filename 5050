@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>次の13日の金曜日までのカウントダウン</title>
+    <style>
+        /* CSSスタイルをここに追加 */
+    </style>
+</head>
+<body>
+    <h1>次の13日の金曜日までのカウントダウン</h1>
+    <div id="countdown"></div>
+
+    <script>
+        function getNextFriday13() {
+            const today = new Date();
+            let nextFriday13 = new Date(today);
+
+            // 今日の日付を13日に設定
+            nextFriday13.setDate(13);
+
+            // 金曜日になるまで日付を進める
+            while (nextFriday13.getDay() !== 5) { // 金曜日は曜日コードで5
+                nextFriday13.setDate(nextFriday13.getDate() + 1);
+            }
+
+            // 今日から次の13日の金曜日までの日数を計算
+            const daysUntilNextFriday13 = Math.ceil((nextFriday13 - today) / (1000 * 60 * 60 * 24));
+
+            return daysUntilNextFriday13;
+        }
+
+        const daysUntilFriday13 = getNextFriday13();
+
+        if (daysUntilFriday13 === 0) {
+            document.getElementById("countdown").innerHTML = "今日は13日の金曜日です！";
+        } else {
+            document.getElementById("countdown").innerHTML = `次の13日の金曜日まであと ${daysUntilFriday13} 日`;
+        }
+    </script>
+</body>
+</html>
